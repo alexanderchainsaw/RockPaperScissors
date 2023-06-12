@@ -26,7 +26,7 @@ def main():
     while True:
         if flag:
             p1 = input(f'\n{name1}, chose your move:\n'
-                               f'-{r_pick}-{p_pick}-{s_pick}-\n').lower().strip()
+                       f'-{r_pick}-{p_pick}-{s_pick}-\n').lower().strip()
             if p1 not in 'rps':
                 print('Invalid pick. Try again')
                 continue
@@ -34,7 +34,7 @@ def main():
                 flag = False
         else:
             p2 = input(f'\n{name2}, chose your move:\n'
-                                f'-{r_pick}-{p_pick}-{s_pick}-\n').lower().strip()
+                       f'-{r_pick}-{p_pick}-{s_pick}-\n').lower().strip()
             if p2 not in 'rps':
                 print('Invalid pick. Try again')
                 continue
