@@ -5,12 +5,15 @@ rock = '\033[1m' + f'{Fore.RED}ROCK{Style.RESET_ALL}'
 paper = '\033[1m' + f'{Fore.GREEN}PAPER{Style.RESET_ALL}'
 scissors = '\033[1m' + f'{Fore.BLUE}SCISSORS{Style.RESET_ALL}'
 
+# for displaying available choices with highlighted keys
 r_pick = '\033[1m' + f'({Fore.RED}R{Style.RESET_ALL})OCK'
 p_pick = '\033[1m' + f'({Fore.GREEN}P{Style.RESET_ALL})APER'
 s_pick = '\033[1m' + f'({Fore.BLUE}S{Style.RESET_ALL})CISSORS'
 
-picks = {'r': rock, 'p': paper, 's': scissors}
-verbs = ['crushed', 'covered', 'snipped']
+picks = {'r': rock, 'p': paper, 's': scissors}  # translate inputs into painted versions
+verbs = ['crushed', 'covered', 'snipped']  # appropriate verbs for game completion outputs
+
+# two strings for victory evaluation. Each letter of 1st string wins over each letter in the 2nd (r>s, p>r, s>p)
 strng1, strng2 = 'rps', 'srp'
 
 
@@ -27,7 +30,7 @@ def main():
         if flag:
             p1 = input(f'\n{name1}, chose your move:\n'
                        f'-{r_pick}-{p_pick}-{s_pick}-\n').lower().strip()
-            if p1 not in 'rps':
+            if p1 not in 'rps' or len(p1) != 1:
                 print('Invalid pick. Try again')
                 continue
             else:
@@ -35,7 +38,7 @@ def main():
         else:
             p2 = input(f'\n{name2}, chose your move:\n'
                        f'-{r_pick}-{p_pick}-{s_pick}-\n').lower().strip()
-            if p2 not in 'rps':
+            if p2 not in 'rps' or len(p2) != 1:
                 print('Invalid pick. Try again')
                 continue
             else:
