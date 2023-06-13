@@ -13,9 +13,6 @@ s_pick = '\033[1m' + f'({Fore.BLUE}S{Style.RESET_ALL})CISSORS'
 picks = {'r': rock, 'p': paper, 's': scissors}  # translate inputs into painted versions
 verbs = ['crushed', 'covered', 'snipped']  # appropriate verbs for game completion outputs
 
-# two strings for victory evaluation. Each letter of 1st string wins over each letter in the 2nd (r>s, p>r, s>p)
-strng1, strng2 = 'rps', 'srp'
-
 
 def main():
     print(f"Welcome to...\n")
@@ -54,7 +51,10 @@ def main():
                     continue
                 else:
                     break
-            if not strng1.index(p1) - strng2.index(p2):
+            # two strings for victory evaluation.
+            # Each letter of 1st string wins over each letter in the 2nd (r>s, p>r, s>p)
+            strng1, strng2 = 'rps', 'srp'
+            if strng1.index(p1) - strng2.index(p2) == 0:
                 name1_score += 1
                 print(f"{name1} has {verbs[strng1.index(p1)]} {name2}'s {p2_pick} with {p1_pick}!")
                 print(f'\nSCORE:\n{name1}: {name1_score}\n{name2}: {name2_score}\n')
