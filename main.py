@@ -50,9 +50,8 @@ def main():
             else:
                 flag = True
 
-            p1_pick, p2_pick = picks[p1], picks[p2]
-            if p1_pick == p2_pick:
-                print(f"Both players selected {p1_pick}. Draw!")
+            if p1 == p2:
+                print(f"Both players selected {picks[p1]}. Draw!")
                 name1_score += 0.5
                 name2_score += 0.5
                 print(f'\nSCORE:\n{name1}: {name1_score}\n{name2}: {name2_score}\n')
@@ -65,7 +64,7 @@ def main():
             strng1, strng2 = 'rps', 'srp'
             if strng1.index(p1) - strng2.index(p2) == 0:
                 name1_score += 1
-                print(f"{name1} has {verbs[strng1.index(p1)]} {name2}'s {p2_pick} with {p1_pick}!")
+                print(f"{name1} has {verbs[strng1.index(p1)]} {name2}'s {picks[p2]} with {picks[p1]}!")
                 print(f'\nSCORE:\n{name1}: {name1_score}\n{name2}: {name2_score}\n')
                 if input('Rematch?(Y/N): ').lower() == 'y':
                     continue
@@ -73,7 +72,7 @@ def main():
                     break
             else:
                 name2_score += 1
-                print(f"{name2} has {verbs[strng1.index(p2)]} {name1}'s {p1_pick} with {p2_pick}!")
+                print(f"{name2} has {verbs[strng1.index(p2)]} {name1}'s {picks[p1]} with {picks[p2]}!")
                 print(f'\nSCORE:\n{name1}: {name1_score}\n{name2}: {name2_score}\n')
                 if input('Rematch?(Y/N): ').lower() == 'y':
                     continue
