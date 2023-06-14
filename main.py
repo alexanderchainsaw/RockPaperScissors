@@ -1,5 +1,6 @@
 from colorama import Fore, Style
 from time import sleep
+import random
 
 rock = '\033[1m' + f'{Fore.RED}ROCK{Style.RESET_ALL}'
 paper = '\033[1m' + f'{Fore.GREEN}PAPER{Style.RESET_ALL}'
@@ -15,17 +16,22 @@ verbs = ['crushed', 'covered', 'snipped']  # appropriate verbs for game completi
 
 
 def main():
+    flag = True
+    name1_score, name2_score = 0, 0
     print(f"Welcome to...\n")
     sleep(1)
     print(f"{rock}|{paper}|{scissors}\n")
-    name1 = input('Player one, enter your name: ')
-    name2 = input('Player two, enter your name: ')
-    flag = True
-    name1_score = 0
-    name2_score = 0
+    mode = input("Choose mode:\n(1).PvP (2).PvE\n ")
+    if mode == '1':
+        name1 = input('Player one, enter your name: ')
+        name2 = input('Player two, enter your name: ')
+        pve = False
+    elif mode == '2':
+        name1, name2 = 'Player', 'Computer'
+        pve = True
     while True:
         if flag:
-            p1 = input(f'\n{name1}, chose your move:\n'
+            p1 = input(f'\n{name1}, select your move:\n'
                        f'-{r_pick}-{p_pick}-{s_pick}-\n').lower().strip()
             if p1 not in 'rps' or len(p1) != 1:
                 print('Invalid pick. Try again')
@@ -33,8 +39,11 @@ def main():
             else:
                 flag = False
         else:
-            p2 = input(f'\n{name2}, chose your move:\n'
-                       f'-{r_pick}-{p_pick}-{s_pick}-\n').lower().strip()
+            if pve:
+                p2 = random.choice('rps')
+            else:
+                p2 = input(f'\n{name2}, select your move:\n'
+                           f'-{r_pick}-{p_pick}-{s_pick}-\n').lower().strip()
             if p2 not in 'rps' or len(p2) != 1:
                 print('Invalid pick. Try again')
                 continue
@@ -43,7 +52,7 @@ def main():
 
             p1_pick, p2_pick = picks[p1], picks[p2]
             if p1_pick == p2_pick:
-                print(f"Both players chose {p1_pick}. Draw!")
+                print(f"Both players selected {p1_pick}. Draw!")
                 name1_score += 0.5
                 name2_score += 0.5
                 print(f'\nSCORE:\n{name1}: {name1_score}\n{name2}: {name2_score}\n')
