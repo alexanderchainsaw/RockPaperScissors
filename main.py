@@ -21,14 +21,20 @@ def main():
     print(f"Welcome to...\n")
     sleep(1)
     print(f"{rock}|{paper}|{scissors}\n")
-    mode = input("Choose mode:\n(1).PvP (2).PvE\n ")
-    if mode == '1':
-        name1 = input('Player one, enter your name: ')
-        name2 = input('Player two, enter your name: ')
-        pve = False
-    elif mode == '2':
-        name1, name2 = 'Player', 'Computer'
-        pve = True
+    selection = True
+    while selection:
+        mode = input("Choose mode:\n(1).PvP (2).PvE\n ")
+        if mode == '1':
+            name1 = input('Player one, enter your name: ')
+            name2 = input('Player two, enter your name: ')
+            pve = False
+            selection = False
+        elif mode == '2':
+            name1, name2 = 'Player', 'Computer'
+            pve = True
+            selection = False
+        else:
+            print("Invalid input. Please enter 1 or 2.")
     while True:
         if flag:
             p1 = input(f'\n{name1}, select your move:\n'
