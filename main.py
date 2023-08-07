@@ -17,7 +17,7 @@ verbs = ['crushed', 'covered', 'snipped']  # appropriate verbs for game completi
 
 def main():
     flag = True
-    name1_score, name2_score = 0, 0
+    score1, score2 = 0, 0
     print(f"Welcome to...\n")
     sleep(1)
     print(f"{rock}|{paper}|{scissors}\n")
@@ -37,30 +37,30 @@ def main():
             print("Invalid input. Please enter 1 or 2.")
     while True:
         if flag:
-            p1 = input(f'\n{name1}, select your move:\n'
-                       f'-{r_pick}-{p_pick}-{s_pick}-\n').lower().strip()
-            if p1 not in 'rps' or len(p1) != 1:
+            pick1 = input(f'\n{name1}, select your move:\n'
+                          f'-{r_pick}-{p_pick}-{s_pick}-\n').lower().strip()
+            if pick1 not in 'rps' or len(pick1) != 1:
                 print('Invalid pick. Try again')
                 continue
             else:
                 flag = False
         else:
             if pve:
-                p2 = random.choice('rps')
+                pick2 = random.choice('rps')
             else:
-                p2 = input(f'\n{name2}, select your move:\n'
-                           f'-{r_pick}-{p_pick}-{s_pick}-\n').lower().strip()
-            if p2 not in 'rps' or len(p2) != 1:
+                pick2 = input(f'\n{name2}, select your move:\n'
+                              f'-{r_pick}-{p_pick}-{s_pick}-\n').lower().strip()
+            if pick2 not in 'rps' or len(pick2) != 1:
                 print('Invalid pick. Try again')
                 continue
             else:
                 flag = True
 
-            if p1 == p2:
-                print(f"Both players selected {picks[p1]}. Draw!")
-                name1_score += 0.5
-                name2_score += 0.5
-                print(f'\nSCORE:\n{name1}: {name1_score}\n{name2}: {name2_score}\n')
+            if pick1 == pick2:
+                print(f"Both players selected {picks[pick1]}. Draw!")
+                score1 += 0.5
+                score2 += 0.5
+                print(f'\nSCORE:\n{name1}: {score1}\n{name2}: {score2}\n')
                 if input('Rematch?(Y/N): ').lower() == 'y':
                     continue
                 else:
@@ -68,18 +68,18 @@ def main():
             # two strings for victory evaluation.
             # Each letter of 1st string wins over each letter in the 2nd (r>s, p>r, s>p)
             strng1, strng2 = 'rps', 'srp'
-            if strng1.index(p1) - strng2.index(p2) == 0:
-                name1_score += 1
-                print(f"{name1} has {verbs[strng1.index(p1)]} {name2}'s {picks[p2]} with {picks[p1]}!")
-                print(f'\nSCORE:\n{name1}: {name1_score}\n{name2}: {name2_score}\n')
+            if not strng1.index(pick1) - strng2.index(pick2):
+                score1 += 1
+                print(f"{name1} has {verbs[strng1.index(pick1)]} {name2}'s {picks[pick2]} with {picks[pick1]}!")
+                print(f'\nSCORE:\n{name1}: {score1}\n{name2}: {score2}\n')
                 if input('Rematch?(Y/N): ').lower() == 'y':
                     continue
                 else:
                     break
             else:
-                name2_score += 1
-                print(f"{name2} has {verbs[strng1.index(p2)]} {name1}'s {picks[p1]} with {picks[p2]}!")
-                print(f'\nSCORE:\n{name1}: {name1_score}\n{name2}: {name2_score}\n')
+                score2 += 1
+                print(f"{name2} has {verbs[strng1.index(pick2)]} {name1}'s {picks[pick1]} with {picks[pick2]}!")
+                print(f'\nSCORE:\n{name1}: {score1}\n{name2}: {score2}\n')
                 if input('Rematch?(Y/N): ').lower() == 'y':
                     continue
                 else:
